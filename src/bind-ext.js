@@ -36,6 +36,10 @@ export default function (module) {
 
                         if (val.extract) {
                             Utils.each(val.extract, (eventType, key)=> {
+                                if(eventType === "event"){
+                                    publishData[key] = e;
+                                    return;
+                                }
                                 let fn = eventType.split("#");
                                 if (fn.length === 2) {
                                     publishData[key] = target[fn[0]](fn[1]);

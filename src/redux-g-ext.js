@@ -54,8 +54,6 @@ export default function (module) {
             if (!this.reducers) return;
             this.render = new Function;
 
-            console.log(createStore)
-            console.log(combineReducers)
             this.store = createStore(combineReducers(this.reducers), this.config.reduxConfig.store, window.devToolsExtension ? window.devToolsExtension() : undefined);
             this.containerNodeCache = undefined;
             $(this.getModuleContainer()).setHtml("<div></div>");

@@ -1,6 +1,6 @@
 {
   "name": "blinx-extensions",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A central repository to host all the extensions created by blinx team.",
   "main": "index.js",
   "scripts": {
