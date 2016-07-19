@@ -2,8 +2,8 @@ import {createStore, combineReducers} from 'redux';
 import {h, diff, patch} from "virtual-dom";
 import parser from 'vdom-parser';
 
-import DomHelper from "./dom";
-import Utils from "./utils";
+import DomHelper from "./dom-ext";
+import Utils from "./utils-ext";
 const $ = DomHelper.getDomNode;
 
 let render = function () {

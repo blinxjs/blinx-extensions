@@ -1,5 +1,5 @@
 import _ from "lodash";
-import domHelper from "./dom";
+import domHelper from "./dom-ext";
 
 function parseSingleDigit(localValue, suffix) {
     var num = localValue.substr(0, 2) + suffix;

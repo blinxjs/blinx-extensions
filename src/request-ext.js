@@ -1,5 +1,5 @@
 import jQuery from "jquery";
-import _ from "./utils";
+import _ from "./utils-ext";
 
 var configuration;
 

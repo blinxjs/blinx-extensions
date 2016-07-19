@@ -1,5 +1,5 @@
-import DomHelper from "./dom";
-import Utils from "./utils";
+import DomHelper from "./dom-ext";
+import Utils from "./utils-ext";
 const $ = DomHelper.getDomNode;
 
 
