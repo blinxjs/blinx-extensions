@@ -1,18 +1,17 @@
 import DomHelper from "./dom-ext";
-import Utils from "./utils-ext";
 const $ = DomHelper.getDomNode;
 
 
 export default function (module) {
     let _overrideFn = new Function;
 
-    if (module.onStatusChange) {
-        _overrideFn = module.onStatusChange.bind(module);
+    if (module.__onStatusChange) {
+        _overrideFn = module.__onStatusChange.bind(module);
     }
 
     return {
 
-        onStatusChange: function (eventName) {
+        __onStatusChange: function (eventName) {
             _overrideFn(eventName);
 
             let onRender = (eventName === "LIFECYCLE:ON_RENDER_CALLED");
@@ -25,8 +24,10 @@ export default function (module) {
             if (!domEventConfigPresent) return;
 
             let self = this;
-            Utils.each(this.config.domEvents, (evtDetail, key) => {
-                Utils.each(evtDetail, (val) => {
+
+            for (let key in this.config.domEvents) {
+                let evtDetail = this.config.domEvents[key];
+                evtDetail.forEach((val)=> {
                     let selectors,
                         publishFn;
 
@@ -35,18 +36,19 @@ export default function (module) {
                         var publishData = {};
 
                         if (val.extract) {
-                            Utils.each(val.extract, (eventType, key)=> {
-                                if(eventType === "event"){
-                                    publishData[key] = e;
-                                    return;
+                            for (var eKey in val.extract) {
+                                let eventType = val.extract[eKey];
+                                if (eventType === "event") {
+                                    publishData[eKey] = e;
+                                } else {
+                                    let fn = eventType.split("#");
+                                    if (fn.length === 2) {
+                                        publishData[eKey] = target[fn[0]](fn[1]);
+                                    } else if (fn.length === 1) {
+                                        publishData[eKey] = target[fn[0]]();
+                                    }
                                 }
-                                let fn = eventType.split("#");
-                                if (fn.length === 2) {
-                                    publishData[key] = target[fn[0]](fn[1]);
-                                } else if (fn.length === 1) {
-                                    publishData[key] = target[fn[0]]();
-                                }
-                            });
+                            }
                         }
 
                         // If key press needs to be handled
@@ -69,8 +71,8 @@ export default function (module) {
                     } else {
                         $(this.getModuleContainer()).on(key, selectors, publishFn);
                     }
-                });
-            });
+                })
+            }
         }
     }
 }
