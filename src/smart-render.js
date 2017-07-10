@@ -20,6 +20,9 @@ export default function (module) {
         }
 
         setDom(hasChild, this.template(placeholder));
+        if(this.config.smartRenderEvent){
+            this.publish && this.publish(this.config.smartRenderEvent);
+        }
 
     };
 
