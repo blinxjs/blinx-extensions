@@ -1,4 +1,4 @@
-import Observa from "observa";
+import Observer from "observer";
 
 let _callObservingMethods = function (...args) {
     let ctx = this;
@@ -37,7 +37,7 @@ let _callObservingMethods = function (...args) {
 
 
 export default function (module) {
-    let $ = Observa({
+    let $ = Observer({
         _: {}
     });
 
