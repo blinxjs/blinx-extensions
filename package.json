@@ -1,6 +1,6 @@
 {
   "name": "blinx-extensions",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A central repository to host all the extensions created by blinx team.",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "jquery": "3.1.0",
     "lodash": "4.13.1",
     "set-dom": "git+https://github.com/blinxjs/set-dom.git",
-    "observa": "0.2.2"
+    "observer": "git+https://github.com/shivani137/observer.git"
   },
   "devDependencies": {
     "babel-cli": "6.7.7",
